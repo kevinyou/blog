@@ -6,6 +6,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://kyouko.me',
-	site: '/blog',
+	base: '/blog',
 	integrations: [mdx(), sitemap()],
 });
