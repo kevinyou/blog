@@ -47,11 +47,7 @@ This is extremely useful because most code is always changing. The link in the a
 
 But if link to a specific commit, then the link is guaranteed to always point to the same lines of code.
 
-[Example](https://github.com/kevinyou/blog/blob/b4f9805baff01470e969e450fb255317f4299a95/src/pages/index.astro) - the same lines of code, forever and always
-
-```
-https://github.com/kevinyou/blog/blob/b4f9805baff01470e969e450fb255317f4299a95/src/pages/index.astro
-```
+[Example 2](https://github.com/kevinyou/blog/blob/b4f9805baff01470e969e450fb255317f4299a95/src/pages/index.astro#L8-L10) - the same lines of code, forever and always
 
 ## Add screenshots or screen recordings
 On MacOS (which I use at work):
