@@ -3,11 +3,5 @@
 		{
 			"path": "."
 		}
-	],
-	"settings": {
-		"cSpell.words": [
-			"astro",
-			"Wreschnig"
-		]
-	}
+	]
 }
