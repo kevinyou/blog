@@ -1,0 +1,61 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const posts = (await getCollection('posts')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			#my-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				@media (max-width: 500px) {
+					grid-template-columns: repeat(1, minmax(0, 1fr));
+				}
+			}
+			#my-top {
+				background-color: red;
+				height: 100px;
+				grid-column: span 2 / span 2;
+
+				@media (max-width: 500px) {
+					grid-column: span 1 / span 1;
+				}
+			}
+			#my-left {
+				background-color: blue;
+				height: 300px;
+
+				@media (max-width: 500px) {
+					order: 1;
+				}
+			}
+			#my-right {
+				background-color: green;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+		<p>
+			Demoing CSS Grid: at below 500px, it becomes a single column layout
+		</p>
+			<div id="my-grid">
+				<div id="my-top">1</div>
+				<div id="my-left">2</div>
+				<div id="my-right">3</div>
+			</div>
+		</main>
+	</body>
+</html>
