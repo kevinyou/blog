@@ -174,6 +174,16 @@ sudo mkdir -p /path/to/hard/drive
 sudo mount /dev/sda2 /path/to/hard/drive -o uid=<username>,gid=<username>
 ```
 
+To mount on startup, first find the uuid of the hard drive
+```
+lsblk -f
+```
+
+Then edit the file system table, `/etc/fstab`, and add:
+```
+UUID=<UUID> /path/to/hard/drive ntfs defaults,noatime,nofail 0 2
+```
+
 # Docker Containers
 Remember to use image for the right architecture for your Raspberry Pi model. For my model, it's `arm32v7`[^1].
 
@@ -188,6 +198,8 @@ Set PUID and GUID to your non-root user, probably `1000`, but you can check usin
 ```
 id -u <username>
 ```
+
+`restart: unless-stopped` allows these containers to be restarted on host startup
 
 ## ddclient
 ```yaml
@@ -247,11 +259,3 @@ services:
       - /path/to/hard/drive/media:/mnt/media
     restart: unless-stopped
 ```
-
-# Run everything on startup
-```shell
-sudo mount /dev/sda2 /path/to/hard/drive -o uid=<user>,gid=<user>; cd /path/to/container/one && docker-compose restart && cd /path/to/container/two && docker-compose restart
-```
-I save this to a file called `run-on-startup.sh`
-
-Is there a better way to do this? Probably
