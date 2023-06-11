@@ -4,16 +4,16 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 body {
-	font-family: Verdana, sans-serif;
-	margin: auto;
-	padding: 20px;
-	max-width: 65ch;
-	text-align: left;
-	background-color: #1E1E1E;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	line-height: 1.5;
-	color: #D4D4D4;
+  font-family: Verdana, sans-serif;
+  margin: auto;
+  padding: 20px;
+  max-width: 65ch;
+  text-align: left;
+  background-color: #1e1e1e;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  color: #d4d4d4;
 }
 h1,
 h2,
@@ -23,49 +23,49 @@ h5,
 h6,
 strong,
 b {
-	color: #ddd;
+  color: #ddd;
 }
 a {
-	color: #ffbf00;
+  color: #ffbf00;
 }
 a:visited {
-	color: #ffbf00;
+  color: #ffbf00;
 }
 nav a {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 textarea {
-	width: 100%;
-	font-size: 16px;
+  width: 100%;
+  font-size: 16px;
 }
 input {
-	font-size: 16px;
+  font-size: 16px;
 }
 content {
-	line-height: 1.6;
+  line-height: 1.6;
 }
 table {
-	width: 100%;
+  width: 100%;
 }
 img {
-	max-width: 100%;
-	height: auto;
+  max-width: 100%;
+  height: auto;
 }
 code {
-	padding: 2px 5px;
-	background-color: #161616;
+  padding: 2px 5px;
+  background-color: #161616;
 }
 pre {
-	padding: 1rem;
+  padding: 1rem;
 }
 pre > code {
-	all: unset;
+  all: unset;
 }
 blockquote {
-	background-color: rgba(127, 127, 127, 0.1);
-	border-inline-start: 5px solid;
-	border-color: rgba(0, 122, 204, 0.5);
-	padding: 2px 0px 2px 20px;
-	margin-inline-end: 7px;
-	font-style: italic;
+  background-color: rgba(127, 127, 127, 0.1);
+  border-inline-start: 5px solid;
+  border-color: rgba(0, 122, 204, 0.5);
+  padding: 2px 0px 2px 20px;
+  margin-inline-end: 7px;
+  font-style: italic;
 }
