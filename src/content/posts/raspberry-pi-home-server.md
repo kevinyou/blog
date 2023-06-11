@@ -61,8 +61,12 @@ sudo sh get-docker.sh
 rm get-docker.sh
 sudo usermod -a -G docker <username>
 sudo systemctl enable docker
+sudo apt-get install -y uidmap
+dockerd-rootless-setuptool.sh install
+systemctl --user enable --now dbus
 ```
-Then relogin in. Confirm success with a `docker ps`
+
+Then relogin in. Confirm success with a `docker ps` and `docker run hello-world`
 
 # Docker Compose
 This turned out more complicated than I expected.
@@ -73,82 +77,10 @@ sudo apt-get install libffi-dev libssl-dev
 sudo apt install python3-dev
 sudo apt-get install -y python3 python3-pip
 
-sudo pip3 install docker-compose
+pip3 install docker-compose
 ```
 
-## The pip3 Detour™
-After running `sudo pip3 install docker-compose` I got this error message
-```
-      =============================DEBUG ASSISTANCE=============================
-      If you are seeing a compilation error please try the following steps to
-      successfully install cryptography:
-      1) Upgrade to the latest pip and try again. This will fix errors for most
-         users. See: https://pip.pypa.io/en/stable/installing/#upgrading-pip
-      2) Read https://cryptography.io/en/latest/installation/ for specific
-         instructions for your platform.
-      3) Check our frequently asked questions for more information:
-         https://cryptography.io/en/latest/faq/
-      4) Ensure you have a recent Rust toolchain installed:
-         https://cryptography.io/en/latest/installation/#rust
-
-      Python: 3.9.2
-      platform: Linux-6.1.21-v7+-armv7l-with-glibc2.31
-      pip: n/a
-      setuptools: 67.8.0
-      setuptools_rust: 1.6.0
-      rustc: n/a
-      =============================DEBUG ASSISTANCE=============================
-
-  error: can't find Rust compiler
-
-  If you are using an outdated pip version, it is possible a prebuilt wheel is available for this package but pip is not able to install from it. Installing from the wheel would avoid the need for a Rust compiler.
-
-  To update pip, run:
-
-      pip install --upgrade pip
-
-  and then retry package installation.
-
-  If you did intend to build this package from source, try installing a Rust compiler from your system package manager and ensure it is on the PATH during installation. Alternatively, rustup (available at https://rustup.rs) is the recommended way to download and update the Rust compiler toolchain.
-
-  This package requires Rust >=1.56.0.
-  ----------------------------------------
-  ERROR: Failed building wheel for cryptography
-
-```
-[Here's a spicy comment on a spicy Stack Overflow post](https://stackoverflow.com/questions/66118337/how-to-get-rid-of-cryptography-build-error#comment118420554_66334084) that pointed me toward the solution. They don't want people to `CRYPTOGRAPHY_DONT_BUILD_RUST` so let's follow their advice!
-
-You know what that means? It's time for-
-### The Rust Detour™
-Run
-```
-curl https://sh.rustup.rs -sSf | sh
-```
-[Thanks geekforgeeks](https://www.geeksforgeeks.org/how-to-install-rust-on-raspberry-pi/#)
-
-## ...Back to Docker Compose
-Confirm The Rust Detour™ is over by running `cargo --version` and `rustc --version`
-
-Confirm the pip3 Detour™ is over by rerunning `sudo pip3 install docker-compose`
-
-Wait that didn't work either, same error message...
-
-## pip Detour 2™
-[After some more slack digging](https://github.com/snipsco/snips-nlu/issues/861) I realized the issue could be env variables. After all, I installed rust on my non-root user.
-
-So let's retry `pip3 install docker-compose` and... it's very slow.
-
-[Like, canonically slow.](https://github.com/pyca/cryptography/issues/7905)
-
-This is truly the worst detour of all.
-
-Anyway, after about 10 minutes it finally finished. Yay doing things the "right" way, it totally pays off (? debatable). I left a [foreboding but helpful comment.](https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo#comment-278j3)
-
-
-## Finally Docker Compose
-Finally confirmed Docker Compose is installed by running `docker-compose --version`. Re-logging in was needed.
-
-# One More Detour
+# Detour
 I hate it here.
 
 ```
@@ -158,11 +90,33 @@ ERROR: for ddclient  Get "https://registry-1.docker.io/v2/linuxserver/ddclient/m
 There's a lot of solutions out there posted but this is the one that finally worked for me: https://stackoverflow.com/a/55770800
 
 ```
+sudo apt install resolvconf
 sudo vi /etc/resolvconf/resolv.conf.d/original
 ```
 Remove `nameserver 192.168.1.1`
 
-Add `namespace 8.8.8.8` and `namespace 8.8.4.4` to `/etc/resolvconf/resolv.conf.d/base`
+```
+sudo vi /etc/resolvconf/resolv.conf.d/base
+```
+Add
+```
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+Run
+```
+sudo resolvconf -u
+```
+
+I even went into my router settings again and changed these to Google DNS
+```
+Servers allocated with DHCP requests:
+DHCP DNS Type: Default Servers Custom Servers
+Primary DNS:
+Secondary DNS:
+```
+Need to check again later
+
 
 I'm guessing this is less of a Docker problem and more of a general DNS thing.
 
@@ -185,9 +139,9 @@ UUID=<UUID> /path/to/hard/drive ntfs defaults,noatime,nofail 0 2
 ```
 
 # Docker Containers
-Remember to use image for the right architecture for your Raspberry Pi model. For my model, it's `arm32v7`[^1].
+Remember to use image for the right architecture for your Raspberry Pi model. For my model, it's `arm64v8`[^1].
 
-[^1]: While writing this blog, I learned that [support for this architecture is ending at the beginning of July](https://www.linuxserver.io/armhf). Wow what great timing! This blog will almost immediately become obsolete!
+[^1]: In the first version of this post I went through these instructions for `arm32v7`, only to learn at the end [that support for it is getting removed at the beginning of July.](https://www.linuxserver.io/armhf). So I went through all of these steps again for `arm64v8`. This also meant this blog was immediately useful to me less than 24 hours later :)
 
 [linuxserver.io](https://www.linuxserver.io/) has a lot of community maintained images for popular server software.
 
@@ -207,7 +161,7 @@ id -u <username>
 version: "2"
 services:
   ddclient:
-    image: linuxserver/ddclient:arm32v7-latest
+    image: linuxserver/ddclient:arm64v8-latest
     container_name: ddclient
     environment:
       - PUID=1000
@@ -225,7 +179,7 @@ services:
 version: "2"
 services:
   transmission:
-    image: linuxserver/transmission:arm32v7-2.94-r1-ls14
+    image: linuxserver/transmission:arm64v8-2.94-r1-ls14
     container_name: transmission
     environment:
       - PUID=1000
@@ -248,7 +202,7 @@ services:
 version: "2"
 services:
   plex:
-    image: linuxserver/plex:arm32v7-1.32.2
+    image: linuxserver/plex:arm64v8-1.32.2
     container_name: plex
     network_mode: host
     environment:
