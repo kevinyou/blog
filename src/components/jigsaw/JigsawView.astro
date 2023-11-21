@@ -1,0 +1,30 @@
+---
+import Piece from './Piece.astro';
+import { generatePieces } from './generatePieces';
+export interface Props {
+}
+
+const originalPieces = generatePieces(5);
+
+---
+
+<!-- Global Metadata -->
+<div>
+	<div>
+		<table class="piece-grid">
+			{originalPieces.map(row => (
+				<tr>
+					{row.map(piece => (
+						<td>
+							<Piece piece={piece}/>
+						</td>
+					))}
+				</tr>
+			))}
+		</table>
+	</div>
+</div>
+<style>
+	.piece-grid {
+	}
+</style>

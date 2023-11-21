@@ -1,0 +1,40 @@
+---
+import type { Piece } from './generatePieces';
+
+export interface Props {
+	piece: Piece;
+}
+
+const { piece } = Astro.props;
+---
+<div class="piece-info">
+	<div class="top">
+		{piece.top === null ? '·' : piece.top}
+	</div>
+	<div class="middle">
+		<div>
+		{piece.left === null ? '·' : piece.left}
+		</div>
+		<div>
+		{piece.right === null ? '·' : piece.right}
+		</div>
+	</div>
+	<div class="bottom">
+		{piece.bottom === null ? '·' : piece.bottom}
+	</div>
+</div>
+<style>
+  .piece-info {
+		background-color: red;
+  }
+
+	.top, .bottom {
+		display: flex;
+		justify-content: center;
+	}
+
+	.middle {
+		display: flex;
+		justify-content: space-between;
+	}
+</style>
