@@ -66,5 +66,33 @@ export const generatePieces = (N: number) => {
     }
   }
 
-	return originalPieces;
+  return expand1dTo2d(
+    shuffleArray(
+      flatten2dTo1d(
+        originalPieces
+      )
+    ),
+    N
+  )
 };
+
+export const flatten2dTo1d = <T>(grid: T[][]): T[] => {
+  return grid.flatMap(row => [...row]);
+}
+
+export const expand1dTo2d = <T>(elements: T[], n: number): T[][] => {
+  const grid: T[][] = [];
+
+  for (let i = 0; i < elements.length; i += n) {
+    grid.push(elements.slice(i, i + n));
+  }
+  return grid;
+}
+
+const shuffleArray = <T>(arr: T[]) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
