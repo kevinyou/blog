@@ -4,7 +4,7 @@ description: 'new blog who dis'
 pubDate: 'Feb 25 2023'
 ---
 
-# I made this blog. Why?
+## I made this blog. Why?
 
 1. So friends, coworkers, and recruiters can see what I'm up to
 1. To have a prettier site than my [existing home page](https://kyouko.me/)

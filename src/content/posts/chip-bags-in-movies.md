@@ -4,7 +4,7 @@ description: "Once you notice this, yoU'll never unnotice it!"
 pubDate: 'Nov 25 2023'
 ---
 
-# What's wrong with this scene?
+## What's wrong with this scene?
 Check out [this post-credits scene from _Community_ season 3 episode 22](https://www.youtube.com/watch?v=JS9zBaBmZxc).
 
 What do you notice that's off? Ignore the fact that it's an obvious homage to Lay's because that's part of the joke.
@@ -13,7 +13,7 @@ It's the sounds that the bag is making as the character touches and moves the ba
 
 This tiny detail always bothered me when I first saw it, enough to distract me from the joke of the scene (old guy makes online food review video of the most mundane thing possible).
 
-# Prop chip bags
+## Prop chip bags
 The reason the bag is weird because it's not an actual chip bag, nor is it made of the material of actual chip bags. It's not an extremely thin plastic, it's some kind of vinyl material.
 
 _Scott Prop and Roll_, a YouTube channel about TV and movie props, has two short videos about prop chip bags, [video 1](https://www.youtube.com/watch?v=OA42ZSO8-Yc) and [video 2](https://www.youtube.com/watch?v=8zzsE39KwvU).
@@ -26,12 +26,12 @@ Dropout (f.k.a. CollegeHumor) has a recurring fake brand called Chompsky's show 
 
 This prop bag sounds much more realistic to me.
 
-# A call to action
+## A call to action
 I know this is an incredibly small detail but I notice the sound of bags a lot when I watch TV even though I don't work in moviemaking.
 
 I do have one burning question though:
 
-## Is this a prop bag?
+### Is this a prop bag?
 At 0:05-0:10 of [this TikTok video](https://www.tiktok.com/@movie6680/video/7302453534132407582?lang=en) [^1] the character is ruffling through a paper bag from a fast food restaurant.
 
 Personally, the bag sounds a bit too damp and quiet compared to my experience with fast food paper bags.

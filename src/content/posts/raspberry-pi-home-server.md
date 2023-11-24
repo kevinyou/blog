@@ -11,38 +11,38 @@ So time to reinstall everything on my Raspberry Pi! Might as well document this 
 
 The audience of this blog is myself in the future.
 
-# Hardware
+## Hardware
 1. A Raspberry Pi.
 	- I have a Raspberry Pi 3 Model B Rev 1.2
 1. SD card
 1. A way to write to SD cards
 1. External hard drive with a separate power supply
 
-# Burning Image to SD Card
+## Burning Image to SD Card
 Get the latest "lite" image from https://www.raspberrypi.com/software/
 
 There are many different tools for formatting SD cards. This one happened to work for me on a Windows host machine. https://rufus.ie/en/
 
-# Enabling Unsafe SSH
+## Enabling Unsafe SSH
 Now, there's a way to set up the image so that SSH is automatically enabled, but Windows plebs can't access the filesystem after imaging, so we are SOL.
 
-# Booting up for the first time
+## Booting up for the first time
 Connect to a monitor and keyboard and plug it in!
 
 You'll be prompted to set up a username and password for a non-root account.
 
-# ssh
+## ssh
 ```
 sudo raspi-config
 ```
 Go to `Interface Options` -> SSH
 
-# Network Config
+## Network Config
 Now connect the ethernet (if you haven't already)
 
 Go to your Router and look for something like "DHCP Reservation". Assign an IP like `192.168.1.201`
 
-# Enabling Safe SSH
+## Enabling Safe SSH
 First, add a ssh client public key to `~/.ssh/authorized_keys`
 
 ```shell
@@ -54,7 +54,7 @@ Set
 PasswordAuthentication no
 ```
 
-# Docker
+## Docker
 ```shell
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -68,7 +68,7 @@ systemctl --user enable --now dbus
 
 Then relogin in. Confirm success with a `docker ps` and `docker run hello-world`
 
-# Docker Compose
+## Docker Compose
 This turned out more complicated than I expected.
 
 Credits to [elalemanyo@dev.to](https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo)
@@ -80,7 +80,7 @@ sudo apt-get install -y python3 python3-pip
 pip3 install docker-compose
 ```
 
-# Detour
+## Detour
 I hate it here.
 
 ```
@@ -122,7 +122,7 @@ I'm guessing this is less of a Docker problem and more of a general DNS thing.
 
 This took way too long
 
-# External Hard Drive
+## External Hard Drive
 ```
 sudo mkdir -p /path/to/hard/drive
 sudo mount /dev/sda2 /path/to/hard/drive -o uid=<username>,gid=<username>
@@ -138,7 +138,7 @@ Then edit the file system table, `/etc/fstab`, and add:
 UUID=<UUID> /path/to/hard/drive ntfs defaults,noatime,nofail 0 2
 ```
 
-# Docker Containers
+## Docker Containers
 Remember to use image for the right architecture for your Raspberry Pi model. For my model, it's `arm64v8`[^1].
 
 [^1]: In the first version of this post I went through these instructions for `arm32v7`, only to learn at the end [that support for it is getting removed at the beginning of July.](https://www.linuxserver.io/armhf). So I went through all of these steps again for `arm64v8`. This also meant this blog was immediately useful to me less than 24 hours later :)
@@ -155,7 +155,7 @@ id -u <username>
 
 `restart: unless-stopped` allows these containers to be restarted on host startup
 
-## ddclient
+### ddclient
 ```yaml
 ---
 version: "2"
@@ -173,7 +173,7 @@ services:
 
 ```
 
-## Transmission
+### Transmission
 ```yaml
 ---
 version: "2"
@@ -196,7 +196,7 @@ services:
     restart: unless-stopped
 ```
 
-# Plex
+## Plex
 ```yaml
 ---
 version: "2"
