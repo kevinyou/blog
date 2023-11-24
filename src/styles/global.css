@@ -51,15 +51,19 @@ img {
   max-width: 100%;
   height: auto;
 }
-code {
-  padding: 2px 5px;
-  background-color: #161616;
-}
 pre {
   padding: 1rem;
 }
 pre > code {
   all: unset;
+}
+
+/*
+  I based the blockquote and code styling off of VSCode dark theme Markdown preview
+ */
+code {
+  padding: 2px 5px;
+  background-color: #161616;
 }
 blockquote {
   background-color: rgba(127, 127, 127, 0.1);
