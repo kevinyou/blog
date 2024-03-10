@@ -12,7 +12,7 @@ export const ColorChanger = ({ initialColor }: { initialColor: string }) => {
 	const [color, setColor] = useState(initialColor);
 	return (
 		<form>
-			<input type="color" defaultValue={color}/>
+			<input type="color" value={color} onChange={e => setColor(e.target.value)}/>
 			<input type="button" value="Click to randomize color"
 				onClick={() => setColor(getRandomColor())}
 			/>
