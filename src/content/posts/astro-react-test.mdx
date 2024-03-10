@@ -16,3 +16,58 @@ How slow is this? How much Javascript ships in the build?
 <Image loading='eager' src={img1} alt="Screenshot of the network tab of this blog post" />
 
 So it's about a 2025% (raw) or 1475% (compressed, transferred) increase in size, for my very simple component.
+
+What about build times and sizes?
+
+```diff
+ xx:xx:xx [vite] Re-optimizing dependencies because lockfile has changed
+-xx:xx:xx Types generated 327ms
++xx:xx:xx Types generated 353ms
+ xx:xx:xx [build] output: "static"
+ xx:xx:xx [build] directory: /home/kevinyou/projects/blog/dist/
+ xx:xx:xx [build] Collecting build info...
+-xx:xx:xx [build] ✓ Completed in 351ms.
++xx:xx:xx [build] ✓ Completed in 374ms.
+ xx:xx:xx [build] Building static entrypoints...
+-xx:xx:xx [vite] ✓ built in 1.22s
+-xx:xx:xx [build] ✓ Completed in 1.24s.
++xx:xx:xx [vite] ✓ built in 1.74s
++xx:xx:xx [build] ✓ Completed in 1.77s.
++
++ building client (vite)
++xx:xx:xx [vite] transforming...
++xx:xx:xx [vite] ✓ 30 modules transformed.
++xx:xx:xx [vite] rendering chunks...
++xx:xx:xx [vite] computing gzip size...
++xx:xx:xx [vite] dist/_astro/ColorChanger.DVL4k6fL.js    1.25 kB │ gzip:  0.78 kB
++xx:xx:xx [vite] dist/_astro/index.NEDEFKed.js           6.71 kB │ gzip:  2.67 kB
++xx:xx:xx [vite] dist/_astro/client.D9Vng9vH.js        135.37 kB │ gzip: 43.73 kB
++xx:xx:xx [vite] ✓ built in 464ms
+ 
+  generating static routes
+ xx:xx:xx ▶ src/pages/posts/[...slug].astro
+-xx:xx:xx   ├─ /posts/chip-bags-in-movies/index.html (+10ms)
+-xx:xx:xx   ├─ /posts/clean-editor-configs/index.html (+4ms)
+-xx:xx:xx   ├─ /posts/formatting-tips/index.html (+4ms)
+-xx:xx:xx   ├─ /posts/google-maps-speed-limits/index.html (+4ms)
++xx:xx:xx   ├─ /posts/astro-react-test/index.html (+22ms) // notably slower than other posts. other post changes is just noise
++xx:xx:xx   ├─ /posts/chip-bags-in-movies/index.html (+6ms)
+ 
+  (+1ms)
+ xx:xx:xx ▶ src/pages/index.astro
+-xx:xx:xx   └─ /index.html (+3ms)
+-xx:xx:xx ✓ Completed in 50ms.
++xx:xx:xx   └─ /index.html (+4ms)
++xx:xx:xx ✓ Completed in 82ms.
++
++ generating optimized images
++xx:xx:xx   ▶ /_astro/astro-react-test-1.B4oXGwd3_Z234IoT.webp (reused cache entry) (+0ms) (1/1)
++xx:xx:xx ✓ Completed in 2ms.
+ 
+ xx:xx:xx [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+-xx:xx:xx [build] 7 page(s) built in 1.66s
++xx:xx:xx [build] 8 page(s) built in 2.71s
+ xx:xx:xx [build] Complete!
+```
+
+Overall, would use React again if neede, but by default happy to keep making posts without it.
