@@ -80,6 +80,7 @@ sudo apt-get install -y python3 python3-pip
 pip3 install docker-compose
 ```
 
+<!--- Not sure if this is reproducible
 ## Detour
 I hate it here.
 
@@ -121,6 +122,7 @@ Need to check again later
 I'm guessing this is less of a Docker problem and more of a general DNS thing.
 
 This took way too long
+-->
 
 ## External Hard Drive
 ```
