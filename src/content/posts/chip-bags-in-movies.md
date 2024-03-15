@@ -49,7 +49,14 @@ I know this is an incredibly small detail but I notice the sound of bags a lot w
 I do have one burning question though:
 
 ### Is this a prop bag?
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@movie6680/video/7302453534132407582" data-video-id="7302453534132407582" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@movie6680" href="https://www.tiktok.com/@movie6680?refer=embed">@movie6680</a> <p></p> <a target="_blank" title="♬ dance(256762) - TimTaj" href="https://www.tiktok.com/music/dance-256762-6830462309895276545?refer=embed">♬ dance(256762) - TimTaj</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@movie6680/video/7302453534132407582"
+	data-video-id="7302453534132407582" style="max-width: 605px;min-width: 325px;">
+	<section> <a target="_blank" title="@movie6680" href="https://www.tiktok.com/@movie6680?refer=embed">@movie6680</a>
+		<p></p> <a target="_blank" title="♬ dance(256762) - TimTaj"
+			href="https://www.tiktok.com/music/dance-256762-6830462309895276545?refer=embed">♬ dance(256762) - TimTaj</a>
+	</section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
 
 At 0:05-0:10 of [this TikTok video](https://www.tiktok.com/@movie6680/video/7302453534132407582?lang=en) [^1] the character is ruffling through a paper bag from a fast food restaurant.
 
