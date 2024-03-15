@@ -5,7 +5,12 @@ pubDate: 'Nov 25 2023'
 ---
 
 ## What's wrong with this scene?
-Check out [this post-credits scene from _Community_ season 3 episode 22](https://www.youtube.com/watch?v=JS9zBaBmZxc).
+<figure>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/JS9zBaBmZxc?si=mXFI1B7o91DS8JJ9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<figcaption>
+		Post-credits scene from <i>Community</i> season 3 episode 22
+	</figcaption>
+</figure>
 
 What do you notice that's off? Ignore the fact that it's an obvious homage to Lay's because that's part of the joke.
 
@@ -16,13 +21,25 @@ This tiny detail always bothered me when I first saw it, enough to distract me f
 ## Prop chip bags
 The reason the bag is weird because it's not an actual chip bag, nor is it made of the material of actual chip bags. It's not an extremely thin plastic, it's some kind of vinyl material.
 
-_Scott Prop and Roll_, a YouTube channel about TV and movie props, has two short videos about prop chip bags, [video 1](https://www.youtube.com/watch?v=OA42ZSO8-Yc) and [video 2](https://www.youtube.com/watch?v=8zzsE39KwvU).
+<figure>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/OA42ZSO8-Yc?si=T_R1qV8oaAZSLOqb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/8zzsE39KwvU?si=ehoKbGITUgK8PQ1g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<figcaption>
+	Short videos from <i>Scott Prop and Roll</i>, a YouTube channel about TV and movie props
+	</figcaption>
+</figure>
+
+
 
 To summarize: actual chip bags (or prop chip bags that would be made out of the same material) are far too noisy and they make it almost impossible to cleanly record dialogue. So movies use this prop bag made out of vinyl that is much quieter.
 
 Also, the brand "Let's" that Scott shows just so happens to be the exact same brand used in the Community scene.
 
 Dropout (f.k.a. CollegeHumor) has a recurring fake brand called Chompsky's show up in their videoes. [Here's an example.](https://youtube.com/clip/UgkxI4jAEwB-IOaXjNKPfbJEtur3VwdATIg2?si=1FK76BX9HNTOu-LV)
+
+<figure>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/CNzWb9Lu2Fs?si=4NPxbyprUpJp1cz9&amp;clip=UgkxI4jAEwB-IOaXjNKPfbJEtur3VwdATIg2&amp;clipt=ELDkAxjwogQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</figure>
 
 This prop bag sounds much more realistic to me.
 
@@ -32,6 +49,8 @@ I know this is an incredibly small detail but I notice the sound of bags a lot w
 I do have one burning question though:
 
 ### Is this a prop bag?
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@movie6680/video/7302453534132407582" data-video-id="7302453534132407582" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@movie6680" href="https://www.tiktok.com/@movie6680?refer=embed">@movie6680</a> <p></p> <a target="_blank" title="♬ dance(256762) - TimTaj" href="https://www.tiktok.com/music/dance-256762-6830462309895276545?refer=embed">♬ dance(256762) - TimTaj</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
 At 0:05-0:10 of [this TikTok video](https://www.tiktok.com/@movie6680/video/7302453534132407582?lang=en) [^1] the character is ruffling through a paper bag from a fast food restaurant.
 
 Personally, the bag sounds a bit too damp and quiet compared to my experience with fast food paper bags.
