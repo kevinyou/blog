@@ -5,6 +5,7 @@ pubDate: 'Nov 25 2023'
 ---
 
 ## What's wrong with this scene?
+
 <figure>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/JS9zBaBmZxc?si=mXFI1B7o91DS8JJ9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 	<figcaption>
@@ -19,6 +20,7 @@ It's the sounds that the bag is making as the character touches and moves the ba
 This tiny detail always bothered me when I first saw it, enough to distract me from the joke of the scene (old guy makes online food review video of the most mundane thing possible).
 
 ## Prop chip bags
+
 The reason the bag is weird because it's not an actual chip bag, nor is it made of the material of actual chip bags. It's not an extremely thin plastic, it's some kind of vinyl material.
 
 <figure>
@@ -28,8 +30,6 @@ The reason the bag is weird because it's not an actual chip bag, nor is it made 
 	Short videos from <i>Scott Prop and Roll</i>, a YouTube channel about TV and movie props
 	</figcaption>
 </figure>
-
-
 
 To summarize: actual chip bags (or prop chip bags that would be made out of the same material) are far too noisy and they make it almost impossible to cleanly record dialogue. So movies use this prop bag made out of vinyl that is much quieter.
 
@@ -44,11 +44,13 @@ Dropout (f.k.a. CollegeHumor) has a recurring fake brand called Chompsky's show 
 This prop bag sounds much more realistic to me.
 
 ## A call to action
+
 I know this is an incredibly small detail but I notice the sound of bags a lot when I watch TV even though I don't work in moviemaking.
 
 I do have one burning question though:
 
 ### Is this a prop bag?
+
 <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@movie6680/video/7302453534132407582"
 	data-video-id="7302453534132407582" style="max-width: 605px;min-width: 325px;">
 	<section> <a target="_blank" title="@movie6680" href="https://www.tiktok.com/@movie6680?refer=embed">@movie6680</a>
@@ -67,4 +69,3 @@ It could be that the bag is a prop, or that the sounds of the bag crinkling were
 What do you think? Do you work in the movie industry? Do you work in sound design or set design? Did you choose the prop bag for the set of that _9-1-1_ episode? If yes to any of these, and you just so happen to be reading this blog post, please let me know what was up. I would really like to know what's up with that bag.
 
 [^1]: Sorry I couldn't find any other clips of this scene on the internet. For future reference this is from _9-1-1: Lone Star_ season 3 episode 14 at the drive thru.
-
