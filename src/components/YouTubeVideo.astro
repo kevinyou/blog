@@ -9,11 +9,15 @@ const { src } = Astro.props;
   iframe {
     border: none;
   }
+  @media (min-width: 768px) {
+    iframe {
+      width: 560px;
+      height: 315px;
+    }
+  }
 </style>
 
 <iframe
-  width="560"
-  height="315"
   src={src}
   title="YouTube video player"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
