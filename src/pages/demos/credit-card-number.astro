@@ -1,0 +1,58 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<script>
+			const blurListener = function (event: Event) {
+				const target = event?.target as HTMLInputElement | null;
+				if (target) {
+					if (target.value.length === 16) {
+						target.value = [
+							target.value.substring(0, 4),
+							target.value.substring(4, 8),
+							target.value.substring(8, 12),
+							target.value.substring(12, 16),
+						].join(' ');
+					}
+				}
+			};
+			const focusListener = function (event: Event) {
+				const target = event?.target as HTMLInputElement | null;
+				if (target) {
+					target.value = target.value.replaceAll(' ', '');
+				}
+			};
+
+			document
+				.getElementById('myInput')
+				?.addEventListener('blur', blurListener);
+			document
+				.getElementById('myInput')
+				?.addEventListener('focus', focusListener);
+		</script>
+		<style>
+			.demo-form {
+				margin-top: 3rem;
+				display: flex;
+				flex-direction: column;
+
+				#myInput {
+					width: 12rem;
+				}
+			}
+		</style>
+  </head>
+  <body>
+    <form class="demo-form">
+      <label>type your favorite 16-digit number:</label>
+      <input id="myInput" maxlength="16"/>
+    </form>
+  </body>
+</html>
