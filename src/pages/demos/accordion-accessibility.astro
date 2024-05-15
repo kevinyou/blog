@@ -1,0 +1,51 @@
+
+---
+import BaseHead from '../../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { Accordion, RadioAccordion } from '../../components/Accordion';
+
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+		<p>
+			<h2>HTML5 Details+Summary Tags</h2>
+			<details>
+				<summary>
+					Who is the first president of the United States?
+				</summary>
+				George Washington
+			</details>
+			<details>
+				<summary>
+					Who is the second president of the United States?
+				</summary>
+				John Adams
+			</details>
+		</p>
+		<p>
+			<h2>Divs with aria roles</h2>
+			<Accordion
+				client:visible 
+				title="Who is the first president of the United States?"
+				body="George Washington"
+			/>
+			<Accordion
+				client:visible 
+				title="Who is the second president of the United States?"
+				body="John Adams"
+			/>
+		</p>
+		<p>
+			<h2>[WIP] Radio buttons with single content panel</h2>
+			<RadioAccordion
+				client:visible
+			/>
+		</p>
+  </body>
+</html>
