@@ -2,6 +2,7 @@
 title: 'Voting Scene Theory'
 description: 'A new theory of mathematics'
 pubDate: 'Apr 20 2024'
+updatedDate: 'May 31 2024'
 ---
 ## Foreword
 This is a new field of mathematics that intersects voting theory, discrete math, and cinematography. It answers the following question:
@@ -23,7 +24,7 @@ The vote can either end when all five votes have been revealed, or when it's mat
 
 Obviously, having leftover votes not be shown is a waste of dramatic real estate.
 
-## Leading with Y (WLOG)
+## Example: 5 Votes, 2 Options
 If a result leads with Y then there's already some assumed bias that Y is going to win. (Without loss of generality, swap Y and N)
 
 The result that leads with Y is likely a-priori the vote that the majority of people think is going to be the result based on their estimates of how everyone will vote.
@@ -67,11 +68,18 @@ This is absolutely brilliant. Subversive. Letting the vote that started get the 
 #### 2.b.ii Y Y N Y .
 Very subversive. After the results of vote 2.b, you might have lead the audience to believe it was going to be set up as Y Y N N Y or Y Y N N N, one of which is the most satisfying result.
 
+## Generalizations
+- Alternating patterns are not exciting if the viewer is paying attention to them, and the end result feels expected.
+- Breaking alternating patterns is very exciting.
+- Randomness is exciting.
 
-## Appendix
+## Future Investigation
 This post dealt with when the results are shown one-by-one.
 
 A future analysis could consider non-linear ways to determine the number of votes to reveal at a given time. Like what if one was revealed as Y, two was revealed as N, but then three-five are all revealed at once as Y?
 
-What about votes with a number other than 5?
-You fool. Half of those are useless, because votes among 4 can tie! Votes among even numbers of people that can tie are EVEN WORSE to watch!
+What about votes with a number other than 5? You fool. Half of those are useless, because votes among 4 can tie! Votes among even numbers of people that can tie are EVEN WORSE to watch!
+
+This idea could be formalized with math. A voting scene could be represented by a finite series of choices `S_n` and then we can measure the randomness and the satisfaction level.
+
+Randomness of a series can be measured with a [randomness test](https://en.wikipedia.org/wiki/Randomness_test), while satisfaction level is more subjective.
