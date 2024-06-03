@@ -3,25 +3,29 @@ title: 'South Korean Street Addresses Explained'
 description: 'English explanation to Korean street system for travelers from the US'
 pubDate: 'Jun 3 2024'
 ---
-## Disclaimer
-This blog was written before visting Korea as a traveler.
+
+import { Image } from 'astro:assets';
+import img1 from '../../../public/korean-address-example-1.png'
+import img2 from '../../../public/korean-address-example-1-1.png'
+
+South Korea uses a slightly different address system than the United States, made even more confusing by the fact that it's in another language. In this post, I will show how the Korean system is actually not that confusing, is pretty logical, and how to easily read addresses.
 
 ## Anatomy of an Address
 In the US, an example address looks like this:
 <figure>
-	1234 Tree Road
-	City, State 11111
+	1234 Tree Road <br />
+	City, State
 </figure>
 
-In South Korea, this would instead look like this, with the zip code omitted[^1]:
+In South Korea, this would instead look like this[^1]:
 
-[^1]: (Korean zip codes are not used for identifying location, just for postal purposes. Well, that's also true in the US too!)
+[^1]: Korean zip codes are not used for identifying location, just for postal purposes. Well, that's also true in the US too! So they are omitted from this post.
 
 <figure>
 	State, City, Tree Road
 </figure>
 
-Note that the Korean address goes from logically "largest to smallest" - State > City > Street > Building/Block.
+Note that the Korean address goes from logically "largest to smallest" - State > City > Street > Building/Block, as opposed to "smallest to largest" like in the United States. It's backwards!
 
 However, Korea doesn't have states, it has provinces and districts! So a Korean address would actually look more like this:
 
@@ -29,7 +33,7 @@ However, Korea doesn't have states, it has provinces and districts! So a Korean 
 	Province, District, City, Tree Road 1234
 </figure>
 
-Here are the translations for these in Korean:
+Here are the translations for the suffixes for these words in Korean:
 
 | Korean | English gloss | Meaning |
 | -------- | ------- | ------- |
@@ -37,9 +41,10 @@ Here are the translations for these in Korean:
 | -구  | -gu    | District |
 | -시  | -si    | City |
 
+We'll get back to Seoul, a special case, at the end.
+
 ## The Street Name and Street Number
 Let's now ignore Province, District, and City -- in the US you can often skip those and just input a street number and street name into Google Maps and, since that is likely fairly unique in the area, it will find the right result. The same is true in Korea.
-
 
 In the US, streets can be called Roads (Rd), Drives (Dr), Lanes (Ln), Streets (St), Boulevards (Blvd), and so forth. In Korea, the equivalents exist too:
 
@@ -74,6 +79,8 @@ It has three roads that branch off of it, which we can call "the 1st road that b
 
 However, in Korean, they are more referred to like "Park Road, Road 1", "Park Road, Road 2", and "Park Road, Road 3". e.g. not ordinals, just numbered. Think of this system like movie sequel titles: You wouldn't call it "Star Wars Number Three" it's "Star Wars Three"!
 
+This system is particularly used more in Seoul, since the city is more densely populated.
+
 ### Branching Roads: Now in Korean
 For Basic Numbering, the "#" can be translated into <ruby>번<rt>beon</rt></ruby>. 번 in Korean means number, much like the word number in English, or the number sign #. And then it also has the suffix <ruby>길<rt>gil</rt></ruby> which just means street.
 
@@ -107,11 +114,11 @@ Becomes this:
 To summarize, a street name can itself have two parts: the major road name and the numbered minor road number plus a suffix indicating which system it's using.
 
 ### Street Number
-After that is the street number, which _has no prefix_. This tripped me up at first becuase every other number in the address has a prefix.
+After that is the street number, which _has no prefix_. This tripped me up at first because every other number in the address has a prefix.
 
-While in the US the street numbers are often 3-5 digits long like 1234 or 12400, in Korea they are often only 1-3 digits like 9, 70, or 321, so let's pick a new example address:
+While in the US the street numbers are often 3-5 digits long like 1234 or 12400, in Korea they are often only 1-3 digits like 9, 70, or 321.
 
-So to summarize, street addresses look like this at this point:
+So let's update our examples with more representative street numbers:
 <figure>
 	University Street 23<ruby>번길<rt>beon gil</rt></ruby> 70
 </figure>
@@ -143,10 +150,9 @@ This is even more common in Korean cities since they are dense, and large apartm
 
 Building and room is sometimes stylized without suffixes and just a dash. However, that is admittedly confusing and could potentially look like the street address number!
 
-## Reading actual addresses
-<figure>
-	<img src="/public/korean-address-example-1.png"/>
-</figure>
+## Example: Osan
+Let's do an actual example: 
+<Image loading='eager' src={img1} alt="Screenshot of Naver Maps of a location in Korea" />
 
 The address is:
 <figure>
@@ -161,10 +167,21 @@ The street name is, in full, <ruby>밀머리로21번길<rt>Mileori-ro 21-beongil
 
 The major road is named <ruby>밀머리로21번길<rt>Mileori-ro</rt></ruby>, and we can confirm by zooming out and seeing where our road branches off from the major road:
 
-<figure>
-	<img src="/public/korean-address-example-1-1.png"/>
-</figure>
+<Image loading='eager' src={img1} alt="Screenshot of Naver Maps, where the name of the major road and minor roads are circled to indicate one is named after the other" />
 
 Based on <ruby>21번길<rt>21-beongil</rt></ruby> we know it's about 210 meters away.
 
 Lastly, 4-1 is the street number plus a hyphenated number. If you look at the map again, there are actually four "rectangles" on the map, or four buildings, that all share the number 4. 4-1 is how we distinguish those 3 buildings.
+
+## Example: Seoul: A Special City
+Seoul is physically located inside <ruby>경기도<rt>Gyeongi-do</rt></ruby> but is administered as a special city. Addresses in Seoul therefore skip the province.
+
+Most formally, the address is written with the phrase "Special City":
+
+| Korean | English gloss | Meaning |
+| -------- | ------- | ------- |
+| 서울특별시  | Seoul Teugbyeolsi     | Seoul Special City|
+
+But the "Special City" part is often skipped in casual conversation and on maps.
+
+Let's look at an example address in Seoul that uses serial numbering... TBD
