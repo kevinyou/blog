@@ -1,0 +1,85 @@
+---
+title: 'Dealing with South Korean Street Addresses While Traveling'
+description: 'Explanations and tips for navigating around South Korea using map apps on your phone'
+pubDate: 'Jun 18 2024'
+---
+
+import { Image } from 'astro:assets';
+import img1 from '../../../public/korean-address-tourists-google-1.png'
+import img2 from '../../../public/korean-address-tourists-google-2.png'
+
+This post is framed from a tourist's perspective who has only limited or no Hangul (Korean alphabet) reading skills but still wants to navigate around South Korea.
+
+## Address Formats: KR vs US
+In a [previous post](../korean-addresses-explained) I explained how the South Korean address system works, and how it differs from the US.
+You don't need to fully understand how the Korean address system works.
+
+The main takeaway is this:
+- in the US it's in *decreasing* order of specificity,
+- while in Korea it's in *increasing* order of specificity,
+
+where street number is more specific than street name and street name is more specific than district, which is more specific than city, which is more specific than province.
+
+## Address Formats
+Hangul can be romanized into Latin characters, and romanized Hangul can be converted back into Hangul, both in a very systematic way.
+
+This gives us four combinations for addresses, based on the alphabet and address order:
+
+| |  |  |
+| -------- | ------- | ------- |
+| | **KR Address Order** | **US Address Order** |
+| **Hangul** | 용산구 이태원로 172 | 172 이태원로 용산구 |
+| **Latin** | Yongsan-gu Itaewon-ro 172 | 172 Yongsan-gu Itaewon-ro |
+
+So there are four formats, which I'll call in this blogpost: KR in Hangul, KR in Latin, US in Hangul, and US in Latin.
+
+| |  |  |
+| -------- | ------- | ------- |
+| | **KR Address Order** | **US Address Order** |
+| **Hangul** | KR in Hangul | US in Hangul |
+| **Latin** | KR in Latin | US in Latin |
+
+KR in Hangul is obviously the preference for native speakers, but tourists who can't read Hangul can't really use this address.
+Their instinct might be to put the address into Google Translate.
+
+However, Google Translate will translate KR in Hangul into US in Latin:
+<Image loading='eager' src={img1} alt="Screenshot of Google Translate converting a KR in Hangul address to US in Latin" />
+and US in Latin into KR in Hangul:
+<Image loading='eager' src={img2} alt="Screenshot of Google Translate converting a US in Latin address to KR in Hangul" />
+
+In other words, not only will Google Translate romanize/deromanize, but it will also flip around the order of the address.
+
+This can be a problem when apps don't support US in Latin.
+
+### ⚠️ Warning: Avoid US in Hangul
+No apps that I've tried support the US in Hangul format correctly - the software will misinterpret the address.
+
+## Apps
+Google Maps is not as effective in South Korea because its residents use Korea-exclusive apps. The two that I used were KakaoMap and NaverMap on Android.
+
+### NaverMap
+The NaverMap app has an English version, which romanizes all place names and shows directions in English, which is very useful for taking the subway.
+
+It will also allow you to search for place names by romanized name, such as subway stations and major landmarks.
+
+Very frustratingly, addresses are shown in US in Latin format, but if you attempt to copy paste an US in Latin address from NaverMap then search it in NaverMap,
+it will misinterpret the search query and show unrelated results. Also, many locations don't have the new street-based address listed.
+
+Searches in either KR in Hangul or KR in Latin format work correctly.
+
+Also, while it has most of the major landmarks and businesses, it tends to be missing a lot of minor establishments, such as smaller restaurants.
+
+I suggest using NaverMap only for navigating once you know where you want to go.
+If you need to find a destination, try to use the romanized name first, and then try using KR in Latin format as an alternative.
+If either of those fail, I suggest navigating to a place located nearby to your desired destination.
+
+### KakaoMap
+KakaoMap has way more smaller business entries on the map, so it's useful for finding food or smaller shops, as well as viewing ratings and reviews for these places.
+
+Addresses are shown in US in Latin, and can be searched in either of KR in Hangul, KR in Latin, OR US in Latin, so it's very flexible on address input.
+Copying an address in either NaverMap or KakaoMap can be pasted into KakaoMap correctly.
+
+Addresses on KakaoMap are always listed in the new street address system.
+
+Unfortunately, the navigation directions for KakaoMap are mostly shown in Hangul, so I don't recommend it for navigating,
+especially navigating on subways where the names of subway stations are very important.
