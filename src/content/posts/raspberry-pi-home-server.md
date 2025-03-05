@@ -2,6 +2,7 @@
 title: 'Raspberry Pi Home Server'
 description: 'Another Raspberry Pi tutorial on the internet'
 pubDate: 'Jun 10 2023'
+updatedDate: 'Mar 5 2025'
 heroImage: ''
 ---
 
@@ -15,38 +16,32 @@ The audience of this blog is myself in the future.
 1. A Raspberry Pi.
 	- I have a Raspberry Pi 3 Model B Rev 1.2
 1. SD card
-1. A way to write to SD cards
-1. External hard drive with a separate power supply
+1. A way to write to SD cards (an SD card slot or adapter)
+1. (optional) External hard drive with a separate power supply
 
 ## Burning Image to SD Card
-Get the latest "lite" image from https://www.raspberrypi.com/software/
+Use imager: https://www.raspberrypi.com/software/ to install the latest Raspberry Pi OS for your Raspberry Pi.
 
-There are many different tools for formatting SD cards. This one happened to work for me on a Windows host machine. https://rufus.ie/en/
-
-## Enabling Unsafe SSH
-Now, there's a way to set up the image so that SSH is automatically enabled, but Windows plebs can't access the filesystem after imaging, so we are SOL.
-
-## Booting up for the first time
-Connect to a monitor and keyboard and plug it in!
-
-You'll be prompted to set up a username and password for a non-root account.
-
-## ssh
-```
-sudo raspi-config
-```
-Go to `Interface Options` -> SSH
+Configure password in settings, and enable SSH via username and password, OR go ahead and add an ssh key at this step.
 
 ## Network Config
 Now connect the ethernet (if you haven't already)
 
 Go to your Router and look for something like "DHCP Reservation". Assign an IP like `192.168.1.201`
 
-## Enabling Safe SSH
-First, add a ssh client public key to `~/.ssh/authorized_keys`
+## Enabling Safe(r) SSH
+Do this if you didn't already set up an ssh key while configuring the image.
 
+First, add a ssh client public key to `~/.ssh/authorized_keys`
 ```shell
 ssh <username>@192.168.1.201
+cd ~/
+mkdir .ssh
+vi .ssh/authorized_keys
+```
+
+Then, disable password auth
+```shell
 sudo vi /etc/ssh/sshd_config
 ```
 Set
@@ -54,7 +49,7 @@ Set
 PasswordAuthentication no
 ```
 
-## Docker
+## Install Docker
 ```shell
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -66,9 +61,56 @@ dockerd-rootless-setuptool.sh install
 systemctl --user enable --now dbus
 ```
 
+<!--
+`systemctl --user enable --now dbus` failed,
+and docker and docker-compose only works on root
+-->
+
 Then relogin in. Confirm success with a `docker ps` and `docker run hello-world`
 
-## Docker Compose
+If that fails due to `connect: network is unreachable`...
+
+### Detour: Fix resolvconf
+```
+sudo apt install resolvconf
+sudo vi /etc/resolvconf/resolv.conf.d/original
+```
+Remove this line:
+```
+nameserver 192.168.1.1
+```
+
+```
+sudo vi /etc/resolvconf/resolv.conf.d/base
+```
+Add these lines:
+```
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+Run
+```
+sudo resolvconf -u
+```
+
+#### Detour of Detour: Fix personal router DNS
+```
+Servers allocated with DHCP requests:
+DHCP DNS Type: Default Servers Custom Servers
+Primary DNS:
+Secondary DNS:
+```
+Then `sudo reboot now`
+
+## Install Docker Compose
+```
+sudo apt install docker-compose
+```
+
+This installs it for the root user as well. Commands need to be run like `sudo docker ps` and `sudo docker-compose`
+<!--
+OLDER WAY
+
 This turned out more complicated than I expected.
 
 Credits to [elalemanyo@dev.to](https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo)
@@ -79,52 +121,10 @@ sudo apt-get install -y python3 python3-pip
 
 pip3 install docker-compose
 ```
-
-<!--- Not sure if this is reproducible
-## Detour
-I hate it here.
-
-```
-ERROR: for ddclient  Get "https://registry-1.docker.io/v2/linuxserver/ddclient/manifests/sha256:512d82147283b540f92087e5018001c225fca072b932fe9d6914d1027f4113b8": dial tcp: lookup registry-1.docker.io on 192.168.1.1:53: no such host
-```
-
-There's a lot of solutions out there posted but this is the one that finally worked for me: https://stackoverflow.com/a/55770800
-
-```
-sudo apt install resolvconf
-sudo vi /etc/resolvconf/resolv.conf.d/original
-```
-Remove `nameserver 192.168.1.1`
-
-```
-sudo vi /etc/resolvconf/resolv.conf.d/base
-```
-Add
-```
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-```
-Run
-```
-sudo resolvconf -u
-```
-
-I even went into my router settings again and changed these to Google DNS
-```
-Servers allocated with DHCP requests:
-DHCP DNS Type: Default Servers Custom Servers
-Primary DNS:
-Secondary DNS:
-```
-Need to check again later
-
-
-I'm guessing this is less of a Docker problem and more of a general DNS thing.
-
-This took way too long
 -->
 
 ## External Hard Drive
+Assuming external hard drive is located at `/dev/sda2`
 ```
 sudo mkdir -p /path/to/hard/drive
 sudo mount /dev/sda2 /path/to/hard/drive -o uid=<username>,gid=<username>
@@ -140,6 +140,8 @@ Then edit the file system table, `/etc/fstab`, and add:
 UUID=<UUID> /path/to/hard/drive ntfs defaults,noatime,nofail 0 2
 ```
 
+Try it out by restarting with `sudo reboot now`
+
 ## Docker Containers
 Remember to use image for the right architecture for your Raspberry Pi model. For my model, it's `arm64v8`[^1].
 
@@ -148,7 +150,7 @@ Remember to use image for the right architecture for your Raspberry Pi model. Fo
 [linuxserver.io](https://www.linuxserver.io/) has a lot of community maintained images for popular server software.
 
 
-I keep all my docker-compose files on the hard drive, which makes the docker images below even easier to recover.
+I keep all my docker-compose files on the hard drive, which makes the docker images below even easier to recover when the SD card corrupts (which it does often!)
 
 Set PUID and GUID to your non-root user, probably `1000`, but you can check using
 ```
