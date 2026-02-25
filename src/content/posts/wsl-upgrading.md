@@ -5,7 +5,9 @@ pubDate: 'Feb 24 2026'
 ---
 I installed WSL1 back in April 2019. What a time. It kinda sucked back then.
 
-Then WSL2 came out in 2020. I held off for a few years because of an awkward situation: WSL2 required virtualization turned on, but hit first-person spyware VALORANT from Riot Games® required me to turn it off to play. [^3]:
+Then WSL2 came out in 2020. I held off for a few years because of an awkward situation: WSL2 required virtualization turned on, but hit first-person spyware VALORANT from Riot Games® required me to turn it off to play. [^1]:
+
+[^1]: Well the [common solution](https://web.archive.org/web/20260218200305/https://support-valorant.riotgames.com/hc/en-us/articles/16941220890899-Addressing-Virtualization-based-security-VBS-settings-on-Windows-10-VAN9005-VALORANT) is to have a motherboard with TPM 2.0, which my motherboard didn't (still doesn't!) have. Shoutout Windows 11 for trying to get me to upgrade just for TPM 2.0. (I won't!)
 
 Around May 2022 I finally decided to cutover to WSL2, and I foolishly went with 20.04 despite 22.04 having just come out.
 
@@ -13,7 +15,7 @@ Well, it's almost May 2026 now and 20.04 is going out of LTS, so I have to final
 
 There's a lot of legacy and different ways to do things with WSL, so I wrote some tips here.
 
-Everything here is specifically WSL2 because a lot changed between WSL1 and WSL2. That, it iself, is a pain for search optimization, and probably LLMs too.
+Everything here is specifically WSL2 because a lot changed between WSL1 and WSL2. That, it itself, is a pain for search optimization, and probably LLMs too.
 
 ## You should update your wsl.exe command itself
 For a while I didn't even know what version of wsl.exe I had because `wsl --version` didn't work. Apparently the `--version` flag itself came in a later version - [in November 2022](https://web.archive.org/web/20260122004826/https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-in-the-microsoft-store-is-now-generally-available-on-windows-10-and-11/).
@@ -92,7 +94,9 @@ Now, open your Ubuntu terminal with something like Windows Terminal. You may not
 ### Easy but legacy: config --default-user
 A common solution to this is to run a command like `ubuntu config --default-user youruser`. This is the suggestion that [Microsoft themselves suggest](https://web.archive.org/web/20260218190816/https://learn.microsoft.com/en-us/windows/wsl/basic-commands#change-the-default-user-for-a-distribution), although it's very poorly documented in my opinion.
 
-You probably aren't familiar with the fact that your WSL2 distro is itself a Windows executable. For me, my executable was actually called `ubuntu2004.exe`. No, not the year 2004[^4], that's just 20.04 shortened in a really confusing way.
+You probably aren't familiar with the fact that your WSL2 distro is itself a Windows executable. For me, my executable was actually called `ubuntu2004.exe`. No, not the year 2004[^2], that's just 20.04 shortened in a really confusing way.
+
+[^2]: coincidentally Ubuntu's [first release was 4.10 released in October 2004](https://en.wikipedia.org/wiki/Ubuntu_version_history#Ubuntu_4.10_(Warty_Warthog)). I don't have to archive.org Wikipedia right? Well whatever I'm lazy
 
 Anyway, run something like
 ```powershell
@@ -138,7 +142,3 @@ sudo vim /etc/wsl.conf
 TBD! Haven't done that yet. I'm going to bed, this already took way too long.
 
 
-[^3]: Well the common solution is to have a motherboard with TPM 2.0, which my motherboard didn't (still doesn't!) have. Shoutout Windows 11 for trying to get me to upgrade just for TPM 2.0. (I won't!)
-https://web.archive.org/web/20260218200305/https://support-valorant.riotgames.com/hc/en-us/articles/16941220890899-Addressing-Virtualization-based-security-VBS-settings-on-Windows-10-VAN9005-VALORANT
-
-[^4]: coincidentally Ubuntu's [first release was 4.10 released in October 2004](https://en.wikipedia.org/wiki/Ubuntu_version_history#Ubuntu_4.10_(Warty_Warthog)). I don't have to archive.org Wikipedia right? Well whatever I'm lazy
