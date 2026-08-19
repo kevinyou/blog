@@ -2,6 +2,7 @@
 title: 'Some Tips About WSL2'
 description: 'Back to tutorials in the LLM age'
 pubDate: 'Feb 24 2026'
+updatedDate: 'Aug 18 2026'
 ---
 I installed WSL1 back in April 2019. What a time. It kinda sucked back then.
 
@@ -16,6 +17,8 @@ Well, it's almost May 2026 now and 20.04 is going out of LTS, so I have to final
 There's a lot of legacy and different ways to do things with WSL, so I wrote some tips here.
 
 Everything here is specifically WSL2 because a lot changed between WSL1 and WSL2. That, it itself, is a pain for search optimization, and probably LLMs too.
+
+Everything is run in Powershell instead of Command Prompt because it has nicer handling of spaces in folders and filenames, but beware that the syntax is slightly different.
 
 ## You should update your wsl.exe command itself
 For a while I didn't even know what version of wsl.exe I had because `wsl --version` didn't work. Apparently the `--version` flag itself came in a later version - [in November 2022](https://web.archive.org/web/20260122004826/https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-in-the-microsoft-store-is-now-generally-available-on-windows-10-and-11/).
@@ -124,11 +127,13 @@ Go to [this ugly Apache website](https://cdimages.ubuntu.com/ubuntu-wsl/), and g
 
 Now run this:
 ```powershell
+# Same long-term folder as before. Keeping your distros nicely organized is convenient for when you inevitably come back to this guide every 2 years.
+mkdir D:\WSL\Ubuntu-24.04
 # noble-wsl-amd64.wsl is the file I downloaded. Noble is Ubuntu 24.04.
 wsl --import Ubuntu-24.04 D:\WSL\Ubuntu-24.04\ 'D:\Path\To\Your\Convenient\Downloaded\noble-wsl-amd64.wsl' --version 2
 ```
 
-Once you do that, you will get logged in as root. Go create a sudo user:
+This should install the distro to your Start Menu. If you run it (and your preferred terminal opens), you will get logged in as root. Go create a sudo user:
 ```bash
 createuser yourusername
 usermod -aG sudo yourusername
@@ -136,6 +141,7 @@ usermod -aG sudo yourusername
 # See previous section about this file
 sudo vim /etc/wsl.conf
 ```
+You may need to rerun `wsl --shutdown` to restart the distro to this conf change applies.
 
 ## Copying files from previous distro to new distro
 
