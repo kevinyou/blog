@@ -2,7 +2,7 @@
 title: 'Raspberry Pi Home Server'
 description: 'Another Raspberry Pi tutorial on the internet'
 pubDate: 'Jun 10 2023'
-updatedDate: 'Mar 5 2025'
+updatedDate: 'Aug 28 2026'
 heroImage: ''
 ---
 
@@ -18,6 +18,7 @@ The audience of this blog is myself in the future.
 1. SD card
 1. A way to write to SD cards (an SD card slot or adapter)
 1. (optional) External hard drive with a separate power supply
+  - Ideally is formatted as ext4 or with an ext4 partition. Mine has a small ext4 partition.
 
 ## Burning Image to SD Card
 Use imager: https://www.raspberrypi.com/software/ to install the latest Raspberry Pi OS for your Raspberry Pi.
@@ -48,6 +49,12 @@ Set
 ```
 PasswordAuthentication no
 ```
+You may also have to check `/etc/ssh/sshd_config.d/` for any override files.
+
+Then run
+```bash
+sudo systemctl restart ssh
+```
 
 ## Install Docker
 ```shell
@@ -56,10 +63,9 @@ sudo sh get-docker.sh
 rm get-docker.sh
 sudo usermod -a -G docker <username>
 sudo systemctl enable docker
-sudo apt-get install -y uidmap
-dockerd-rootless-setuptool.sh install
-systemctl --user enable --now dbus
 ```
+
+I do not recommend rootless anymore, it's easier when moving docker files into another partition.
 
 <!--
 `systemctl --user enable --now dbus` failed,
@@ -102,13 +108,16 @@ Secondary DNS:
 ```
 Then `sudo reboot now`
 
-## Install Docker Compose
+<!--
+## Install Docker Compose (optional)
+Older versions of Docker did not ship with docker-compose, but now they are one tool.
+
 ```
 sudo apt install docker-compose
 ```
 
 This installs it for the root user as well. Commands need to be run like `sudo docker ps` and `sudo docker-compose`
-<!--
+
 OLDER WAY
 
 This turned out more complicated than I expected.
@@ -122,6 +131,12 @@ sudo apt-get install -y python3 python3-pip
 pip3 install docker-compose
 ```
 -->
+
+## Disable desktop on boot
+
+raspi-config can do this, just boot to command line instead of GUI.
+
+Now that there are no "lite" images published, this has to be done.
 
 ## External Hard Drive
 Assuming external hard drive is located at `/dev/sda2`
@@ -139,8 +154,65 @@ Then edit the file system table, `/etc/fstab`, and add:
 ```
 UUID=<UUID> /path/to/hard/drive ntfs defaults,noatime,nofail 0 2
 ```
+Replace ntfs with the correct filesystem. Be careful! This could brick your boot if incorrectly.
 
-Try it out by restarting with `sudo reboot now`
+## Docker containers/images on External Hard Drive
+You may want to do this in combination with the next step (OverlayFS to reduce writes) so docker images are stored on the hard drive, not the SD card.
+
+First, a place for docker files:
+```bash
+mkdir -p /mnt/path/to/docker
+sudo nano /etc/docker/daemon.json
+```
+```json
+{
+  "data-root": "/mnt/path/to/docker"
+}
+```
+
+Additionally, after Docker 29, also a place for containerd images:
+```bash
+sudo nano /etc/containerd/config.toml
+```
+Add `root = "/var/lib/containerd"`
+
+Finally, require mounting your hard drive partition before starting Docker:
+```bash
+sudo systemctl edit docker
+```
+```ini
+[Unit]
+RequiresMountsFor=/mnt/path/to/docker
+```
+
+## OverlayFS to reduce writes
+This step will make every other operation more of a pain in the ass due to the write protection, so do this last.
+
+Generally followed https://www.and-e.co.uk/sysadmin/raspberryPiOverlayFileSystem.html
+
+```bash
+raspi-config
+```
+Answer yes to both "Would you like the overlay file system to be enabled?" and "Would you like the boot partition to be write-protected?" but do NOT reboot yet.
+
+If you have an external hard drive, you'll want to first make sure external hard drives are not write protected.
+
+```bash
+sudo mount -o remount,rw /boot/firmware
+```
+
+```
+sudoedit /boot/firmware/cmdlint.txt from
+```
+
+Change `overlayroot=tmpfs` to `overlayroot=tmpfs:recurse=0`
+
+Then undo the temporary mount
+```bash
+sudo mount -o remount,ro /boot/firmware
+```
+
+And then you can reboot.
 
 ## Docker Containers
 Remember to use image for the right architecture for your Raspberry Pi model. For my model, it's `arm64v8`[^1].
@@ -217,3 +289,16 @@ services:
       - /path/to/hard/drive/media:/mnt/media
     restart: unless-stopped
 ```
+
+## Operating
+```bsh
+sudo docker compose up -d
+```
+Not using sudo will cause issues.
+
+Containers should start back up on restart, too.
+
+
+<sub>
+This guide has been used <b>2 times</b> by myself and saved my ass.
+</sub>
